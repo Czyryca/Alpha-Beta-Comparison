@@ -35,31 +35,44 @@ void Tree::recurCreate(Node *myRoot, int level){
 }
 
 void Tree::retAnalysisIter(bool player, Node *myRoot){
-	int level = 0;
-	bool tempPlayer = player;
+	//int level = 0;
+	//Run until root node's value is determined
 	while(myRoot->value == NULL){
 		Node *next = myRoot;
+		bool tempPlayer = player;
+		//Scan down the tree, solving sub-trees when possible
 		while(next->value == NULL){
+			//Left child undefined, continue scanning left
 			if(next->childL->value == NULL){
 				next = next->childL;
 				tempPlayer = !tempPlayer;
+			//Right child undefined, continue scanning right
 			} else if(next->childR->value == NULL){
 				next = next->childR;
 				tempPlayer = !tempPlayer;
+			//Both children defined, solve for current node
 			} else {
-				if(player){
+				//Player 1's turn
+				if(!tempPlayer){
+					//At least one child is 1, so this node is 1
 					if(next->childL->value == 1 || next->childR->value == 1){
 						next->value = 1;
+					//Neither child is one, but at least one is 0
 					} else if(next->childL->value == 0 || next->childR->value == 0){
 						next->value = 0;
+					//All routes lead to a -1
 					} else {
 						next->value = -1;
 					} 
+				//Player 2's turn
 				} else {
+					//At least one child is a -1, so this node is a -1
 					if(next->childL->value == -1 || next->childR->value == -1){
 						next->value = -1;
+					//Neither child is -1, but at least one is 0
 					} else if(next->childL->value == 0 || next->childR->value == 0){
 						next->value = 0;
+					//All routes lead to a 1
 					} else {
 						next->value = 1;
 					}
@@ -68,5 +81,6 @@ void Tree::retAnalysisIter(bool player, Node *myRoot){
 
 		}
 	}
+	//At algorithm's end, set tree's value to value of root node
 	this->value = myRoot->value;
 }
