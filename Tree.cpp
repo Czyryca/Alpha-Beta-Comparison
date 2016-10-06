@@ -33,3 +33,40 @@ void Tree::recurCreate(Node *myRoot, int level){
     //cout << "Generated child node value: " << myRoot->value << endl;
   }
 }
+
+void Tree::retAnalysisIter(bool player, Node *myRoot){
+	int level = 0;
+	bool tempPlayer = player;
+	while(myRoot->value == NULL){
+		Node *next = myRoot;
+		while(next->value == NULL){
+			if(next->childL->value == NULL){
+				next = next->childL;
+				tempPlayer = !tempPlayer;
+			} else if(next->childR->value == NULL){
+				next = next->childR;
+				tempPlayer = !tempPlayer;
+			} else {
+				if(player){
+					if(next->childL->value == 1 || next->childR->value == 1){
+						next->value = 1;
+					} else if(next->childL->value == 0 || next->childR->value == 0){
+						next->value = 0;
+					} else {
+						next->value = -1;
+					} 
+				} else {
+					if(next->childL->value == -1 || next->childR->value == -1){
+						next->value = -1;
+					} else if(next->childL->value == 0 || next->childR->value == 0){
+						next->value = 0;
+					} else {
+						next->value = 1;
+					}
+				}
+			}
+
+		}
+	}
+	this->value = myRoot->value;
+}
