@@ -26,6 +26,9 @@ class Tree{
   //true  = Player 2's turn
   bool turn;
 
+  int retAnalysisRecursive();
+  int retSub(bool player1, Node *parent);
+
   //Iterative Alpha Beta Analysis Algorithm
   void retAnalysisIter(bool player, Node *myRoot);
 

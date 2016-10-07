@@ -7,7 +7,7 @@ Tree::Tree(int depth){
 
   this->root = Node();
   this->depth = depth;
-  this->turn = rand() % 2;
+  this->turn = rand() % 2; //unused?
   recurCreate(&root, 0); 
 
 }
@@ -16,10 +16,12 @@ void Tree::recurCreate(Node *myRoot, int level){
   if(level + 1 < depth){
     //Sets up left node
     Node *left = new Node();
+    left->value = -2;
     myRoot->childL = left;
     
-    //Sets up right nde
+    //Sets up right node
     Node *right = new Node();
+    right->value = -2;
     myRoot->childR = right;
 
     //Continues down tree
@@ -32,6 +34,23 @@ void Tree::recurCreate(Node *myRoot, int level){
     //Below used for debugging
     //cout << "Generated child node value: " << myRoot->value << endl;
   }
+}
+//Recursive Bootstrap
+int Tree::retAnalysisRecursive(){
+    return retSub(true,&root);
+}
+
+int Tree::retSub(bool player1, Node *parent){
+    if((parent->childL==NULL) & (parent->childR==NULL)){
+        return parent->value;
+    }
+    else if(player1){
+        return max(retSub(false,parent->childL),retSub(false,parent->childR));
+    }
+    else{
+        
+        return min(retSub(true,parent->childL),retSub(true,parent->childR));
+    }
 }
 
 void Tree::retAnalysisIter(bool player, Node *myRoot){
