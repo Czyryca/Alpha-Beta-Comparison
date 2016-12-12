@@ -32,6 +32,9 @@ class Tree{
   //Iterative Alpha Beta Analysis Algorithm
   void retAnalysisIter(bool player, Node *myRoot);
 
+  //Second try at iterative implementation
+  void retAnalysisIter(bool player, Tree tree);
+
   //Recursive function used to populate tree
   void recurCreate(Node *myRoot, int level);
 

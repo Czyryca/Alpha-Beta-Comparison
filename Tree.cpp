@@ -17,11 +17,13 @@ void Tree::recurCreate(Node *myRoot, int level){
     //Sets up left node
     Node *left = new Node();
     left->value = -2;
+    left->parent = myRoot;
     myRoot->childL = left;
     
     //Sets up right node
     Node *right = new Node();
     right->value = -2;
+    right->parent = myRoot;
     myRoot->childR = right;
 
     //Continues down tree
@@ -52,6 +54,17 @@ int Tree::retSub(bool player1, Node *parent){
         return min(retSub(true,parent->childL),retSub(true,parent->childR));
     }
 }
+
+void Tree::retAnalysisIter2(bool player1, Tree tree){
+    //Navigate to bottom of tree, keeping track of the starting player
+    //Once you reach a node with a value, start ret anal
+    //while not done
+    //go from left to right min or maxing,
+    //then once you reach the side go up a level and go back max or mining
+    //Done once a node does not have a parent (root)
+
+}
+
 
 void Tree::retAnalysisIter(bool player, Node *myRoot){
 	//int level = 0;
