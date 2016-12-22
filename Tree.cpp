@@ -57,11 +57,18 @@ int Tree::retSub(bool player1, Node *parent){
 
 void Tree::retAnalysisIter2(bool player1, Tree tree){
     //Navigate to bottom of tree, keeping track of the starting player
-    //Once you reach a node with a value, start ret anal
-    //while not done
-    //go from left to right min or maxing,
-    //then once you reach the side go up a level and go back max or mining
-    //Done once a node does not have a parent (root)
+    //while(current node has a left node)
+    //  current node := left
+    //  turn = !turn
+    //
+    //Once you reach a node with a value, start filling in values
+    //Go to the first node that needs to be filled in
+    //current node = parent
+    //
+    //while current node has a parent(not the root), 
+    //go from left to right min ing,
+    //or right to left maxing
+    //once you reach the side go up a level and go back the other way
 
 }
 
