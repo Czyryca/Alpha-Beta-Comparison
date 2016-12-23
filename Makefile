@@ -9,8 +9,17 @@ Tree.o: Tree.cpp
 Driver.o: Driver.cpp
 	g++ $(FLAGS) Driver.cpp -c
 
+DriverSkeleton.o: DriverSkeleton.cpp
+	g++ $(FLAGS) DriverSkeleton.cpp -c
+
+simple:
+	g++ $(FLAGS) DriverSkeleton.cpp Tree.o -o simple.out
+
 run:
 	./output.out
+
+valgrind:
+	valgrind --tool=massif --stacks=yes ./simple.out
 
 clean:
 	rm -rf *.o
