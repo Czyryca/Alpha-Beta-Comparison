@@ -8,7 +8,7 @@
 using namespace std;
 
 int main(){
-  for (int i = 10; i <= 20; i++){
+  for (int i = 10; i <= 21; i++){
     Tree *test = new Tree(i);
     clock_t begin = clock();
     test->retAnalysisIter(true, &(test->root));
@@ -16,7 +16,7 @@ int main(){
     printf("Iterative on %d levels: got %d in %f seconds.\n",
             i,test->value,double(end-begin)/CLOCKS_PER_SEC);
     }
-  for (int i = 10; i <= 20; i++){
+  for (int i = 10; i <= 21; i++){
     Tree *test = new Tree(i);
     clock_t begin = clock();
     test->retAnalysisRecursive();
@@ -24,5 +24,6 @@ int main(){
     printf("Recursive on %d levels: got %d in %f seconds.\n",
             i,test->value,double(end-begin)/CLOCKS_PER_SEC);
     }
+	cin.get();
     return 0;
 }

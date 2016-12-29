@@ -6,6 +6,7 @@ using namespace std;
 Tree::Tree(int depth){
 
   this->root = Node();
+  this->root.value = -2;
   this->depth = depth;
   this->turn = rand() % 2; //unused?
   recurCreate(&root, 0); 
@@ -70,26 +71,25 @@ void Tree::retAnalysisIter2(bool player1, Tree tree){
     //or right to left maxing
     //once you reach the side go up a level and go back the other way
 
+
 }
 
 
 void Tree::retAnalysisIter(bool player, Node *myRoot){
 	//int level = 0;
 	//Run until root node's value is determined
-	while(myRoot->value == NULL){
+	while(myRoot->value == -2){
 		Node *next = myRoot;
 		bool tempPlayer = player;
 		//Scan down the tree, solving sub-trees when possible
-		while(next->value == NULL){
+		while(next->value == -2){
 			//Left child undefined, continue scanning left
-			//cout << "Trying to print next child's value" << endl;
-			//cout << next->childL->value << endl;
 
-			if(next->childL != NULL && next->childL->value == NULL){
+			if(next->childL != NULL && next->childL->value == -2){
 				next = next->childL;
 				tempPlayer = !tempPlayer;
 			//Right child undefined, continue scanning right
-			} else if(next->childR != NULL && next->childR->value == NULL){
+			} else if(next->childR != NULL && next->childR->value == -2){
 				next = next->childR;
 				tempPlayer = !tempPlayer;
 			//Both children defined, solve for current node
